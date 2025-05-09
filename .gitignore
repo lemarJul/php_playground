@@ -1,0 +1,11 @@
+/vendor/
+/node_modules/
+/public/build/
+.env
+.phpunit.result.cache
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+/vendor/
