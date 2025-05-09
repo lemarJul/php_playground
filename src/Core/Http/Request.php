@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Core\Http;
 
-class Request
+class Request implements RequestInterface
 {
     private array $queryParams;
     private array $requestData;
