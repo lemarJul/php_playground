@@ -42,8 +42,6 @@ if (RuntimeEnvironment::isProd()) {
     ]);
 }
 
-// DatabaseConfigLoader::forEnvironment()->getConnection();
-
 // Error handling in development
 if (RuntimeEnvironment::isDev()) {
     ini_set('display_errors', '1');
