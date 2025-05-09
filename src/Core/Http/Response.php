@@ -4,50 +4,58 @@ namespace App\Core\Http;
 
 use App\Core\Http\HttpStatusCode;
 
-class Response
+class Response implements ResponseInterface
 {
     protected $content;
-    protected $statusCode;
-    protected $headers = [];
+    protected int $statusCode;
+    protected array $headers = [];
 
-    public function __construct($content = '', $statusCode = HttpStatusCode::OK, array $headers = [])
+    public function __construct($content = '', int $statusCode = HttpStatusCode::OK, array $headers = [])
     {
         $this->content = $content;
         $this->statusCode = $statusCode;
         $this->headers = $headers;
     }
 
-    public function setContent($content)
+    public function setContent($content): ResponseInterface
     {
         $this->content = $content;
         return $this;
     }
 
-    public function setStatusCode($statusCode)
+    public function setStatusCode(int $statusCode): ResponseInterface
     {
         $this->statusCode = $statusCode;
         return $this;
     }
 
-    public function addHeader($name, $value)
+    public function addHeader(string $name, string $value): ResponseInterface
     {
         $this->headers[$name] = $value;
         return $this;
     }
 
-    public function send()
+    public function send(): void
     {
-        // Set status code
         http_response_code($this->statusCode);
-
-        // Set headers
         foreach ($this->headers as $name => $value) {
             header("$name: $value");
         }
-
-        // Output content
         echo $this->content;
+    }
 
-        return $this;
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+    public function getStatusCode(): int
+    {
+        return $this->statusCode;
+    }
+
+    public function getHeaders(): array
+    {
+        return $this->headers;
     }
 }
