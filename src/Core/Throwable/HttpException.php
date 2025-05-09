@@ -2,7 +2,7 @@
 
 namespace App\Core\Throwable;
 
-use App\Core\Router\HTTP\HttpStatusCode;
+use App\Core\Http\HttpStatusCode;
 
 class HttpException extends \Exception
 {

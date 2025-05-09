@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Core\Router\HTTP;
+namespace App\Core\HTTP;
 
 class HttpStatusCode
 {

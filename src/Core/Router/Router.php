@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Core\Router;
 
-use App\Core\HttpException;
+use App\Core\Throwable\HttpException;
 
 class Router implements RouterInterface
 {
