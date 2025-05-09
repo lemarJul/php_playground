@@ -26,8 +26,8 @@ if ($_ENV['APP_ENV'] === 'development') {
 
 // Add a global exception handler with
 set_exception_handler(function (Throwable $exception) {
-    if (class_exists('App\Core\ErrorHandler')) {
-        App\Core\ErrorHandler::handleGlobalException($exception);
+    if (class_exists('App\Core\Throwable\ErrorHandler')) {
+        App\Core\Throwable\ErrorHandler::handleGlobalException($exception);
     } else {
         // Fallback if ErrorHandler isn't available
         error_log($exception->getMessage());
