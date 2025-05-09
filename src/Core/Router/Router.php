@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Core\Router;
 
+use App\Core\Http\RequestInterface;
 use App\Core\Throwable\HttpException;
 
 class Router implements RouterInterface
@@ -62,19 +63,15 @@ class Router implements RouterInterface
      * If a match is found, it returns the route handler and any extracted parameters.
      * If no match is found, it throws a 404 exception.
      *
+     * @param \App\Core\Http\RequestInterface $request The HTTP request object.
      * @throws \Exception
      * @return array<array|mixed|null> An array containing the route handler and any extracted parameters.
      */
-    public function resolve(): array
+    public function resolve(RequestInterface $request): array
     {
-        // Get the request method
-        $method = $_SERVER['REQUEST_METHOD'];
-
-        // Get the request URI
-        $path = $_SERVER['REQUEST_URI'] ?? '/';
-
-        // Remove query string from the path
-        [$path] = explode('?', $path);
+        // Get the request method and path
+        $method = $request->getMethod();
+        $path = $request->getPath();
 
         // Find matching route
         foreach ($this->routes[$method] as $routePath => $callback) {

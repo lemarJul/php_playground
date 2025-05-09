@@ -2,6 +2,8 @@
 
 namespace App\Core\Router;
 
+use App\Core\Http\RequestInterface;
+
 /**
  * Interface defining the contract for a router.
  */
@@ -46,9 +48,10 @@ interface RouterInterface
     /**
      * Resolves the current route based on the request.
      *
+     * @param \App\Core\Http\RequestInterface $request The HTTP request object
      * @return array The resolved route information.
      */
-    public function resolve(): array;
+    public function resolve(RequestInterface $request): array;
 
     /**
      * Retrieves all registered routes.
